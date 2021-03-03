@@ -2,6 +2,9 @@ module Lamby
   class RackHttp < Lamby::Rack
 
     def response(handler)
+      puts "env_headers - #{env_headers.inspect}"
+      puts "handler headers - #{handler.headers.inspect}"
+      
       if handler.base64_encodeable?
         { isBase64Encoded: true, body: handler.body64 }
       else
@@ -78,7 +81,6 @@ module Lamby
         event.dig('requestContext', 'protocol') ||
         'HTTP/1.1'
     end
-
 
   end
 end
