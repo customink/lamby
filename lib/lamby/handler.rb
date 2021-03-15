@@ -42,6 +42,8 @@ module Lamby
       @rbody ||= ''.tap do |rbody|
         @body.each { |part| rbody << part }
       end
+    rescue NoMethodError => e
+      ''
     end
 
     def call
